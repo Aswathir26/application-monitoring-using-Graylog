@@ -1,0 +1,222 @@
+{
+    "v": 1,
+    "id": "e896caca-865d-4d9c-b5a2-a32b20bfdc76",
+    "rev": 1,
+    "name": "events-test",
+    "summary": "it is used for testing purpose",
+    "description": "",
+    "vendor": "user",
+    "url": "",
+    "parameters": [],
+    "entities": [{
+            "v": "1",
+            "type": {
+                "name": "event_definition",
+                "version": "1"
+            },
+            "id": "5ab398e5-a3e9-4577-ac90-eaa8472e3d79",
+            "data": {
+                "field_spec": {},
+                "config": {
+                    "type": "aggregation-v1",
+                    "query": {
+                        "@type": "string",
+                        "@value": ""
+                    },
+                    "streams": [],
+                    "group_by": [
+                        "source"
+                    ],
+                    "series": [{
+                        "id": "avg-metricbeat_system_memory_actual_free",
+                        "function": "avg",
+                        "field": "metricbeat_system_memory_actual_free"
+                    }],
+                    "conditions": {
+                        "expression": {
+                            "expr": "<=",
+                            "left": {
+                                "expr": "number-ref",
+                                "ref": "avg-metricbeat_system_memory_actual_free"
+                            },
+                            "right": {
+                                "expr": "number",
+                                "value": 10000000000
+                            }
+                        }
+                    },
+                    "search_within_ms": 1800000,
+                    "execute_every_ms": 1800000
+                },
+                "priority": {
+                    "@type": "integer",
+                    "@value": 3
+                },
+                "notifications": [{
+                    "notification_id": {
+                        "@type": "string",
+                        "@value": "3d648d75-cfb8-4313-9973-46e12d83dc80"
+                    },
+                    "notification_parameters": null
+                }],
+                "notification_settings": {
+                    "grace_period_ms": 1800000,
+                    "backlog_size": 0
+                },
+                "title": {
+                    "@type": "string",
+                    "@value": "low memory"
+                },
+                "is_scheduled": {
+                    "@type": "boolean",
+                    "@value": true
+                },
+                "key_spec": [],
+                "storage": [{
+                    "type": "persist-to-streams-v1",
+                    "streams": [
+                        "000000000000000000000002"
+                    ]
+                }],
+                "alert": {
+                    "@type": "boolean",
+                    "@value": true
+                },
+                "description": {
+                    "@type": "string",
+                    "@value": ""
+                }
+            },
+            "constraints": [{
+                "type": "server-version",
+                "version": ">=4.2.3+553fadb"
+            }]
+        },
+        {
+            "v": "1",
+            "type": {
+                "name": "event_definition",
+                "version": "1"
+            },
+            "id": "f27c2676-224f-4197-9457-1313f3647fa6",
+            "data": {
+                "field_spec": {},
+                "config": {
+                    "type": "aggregation-v1",
+                    "query": {
+                        "@type": "string",
+                        "@value": "error"
+                    },
+                    "streams": [],
+                    "group_by": [],
+                    "series": [],
+                    "conditions": {
+                        "expression": null
+                    },
+                    "search_within_ms": 1800000,
+                    "execute_every_ms": 1800000
+                },
+                "priority": {
+                    "@type": "integer",
+                    "@value": 2
+                },
+                "notifications": [{
+                    "notification_id": {
+                        "@type": "string",
+                        "@value": "9905e6bf-d951-4321-82f3-c381752028a7"
+                    },
+                    "notification_parameters": null
+                }],
+                "notification_settings": {
+                    "grace_period_ms": 1800000,
+                    "backlog_size": 0
+                },
+                "title": {
+                    "@type": "string",
+                    "@value": "error messages"
+                },
+                "is_scheduled": {
+                    "@type": "boolean",
+                    "@value": true
+                },
+                "key_spec": [],
+                "storage": [{
+                    "type": "persist-to-streams-v1",
+                    "streams": [
+                        "000000000000000000000002"
+                    ]
+                }],
+                "alert": {
+                    "@type": "boolean",
+                    "@value": true
+                },
+                "description": {
+                    "@type": "string",
+                    "@value": ""
+                }
+            },
+            "constraints": [{
+                "type": "server-version",
+                "version": ">=4.2.3+553fadb"
+            }]
+        },
+        {
+            "v": "1",
+            "type": {
+                "name": "notification",
+                "version": "1"
+            },
+            "id": "3d648d75-cfb8-4313-9973-46e12d83dc80",
+            "data": {
+                "title": {
+                    "@type": "string",
+                    "@value": "system memory is too low"
+                },
+                "description": {
+                    "@type": "string",
+                    "@value": ""
+                },
+                "config": {
+                    "type": "http-notification-v1",
+                    "url": {
+                        "@type": "string",
+                        "@value": "<webhook url>"
+                    }
+                }
+            },
+            "constraints": [{
+                "type": "server-version",
+                "version": ">=4.2.3+553fadb"
+            }]
+        },
+        {
+            "v": "1",
+            "type": {
+                "name": "notification",
+                "version": "1"
+            },
+            "id": "9905e6bf-d951-4321-82f3-c381752028a7",
+            "data": {
+                "title": {
+                    "@type": "string",
+                    "@value": "error messages"
+                },
+                "description": {
+                    "@type": "string",
+                    "@value": ""
+                },
+                "config": {
+                    "type": "http-notification-v1",
+                    "url": {
+                        "@type": "string",
+                        "@value": "<webhook url>"
+                    }
+                }
+            },
+            "constraints": [{
+                "type": "server-version",
+                "version": ">=4.2.3+553fadb"
+            }]
+        }
+    ]
+}
