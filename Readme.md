@@ -38,14 +38,19 @@ references: https://docs.graylog.org/v1/docs/notifications
 # STEP 1:
 
  $ kubectl create namespace logging
-
+ 
 # STEP 2:
+
+ $ git clone https://github.com/Aswathir26/application-monitoring-using-Graylog.git
+ $ cd application-monitoring-using-Graylog/
+
+# STEP 3:
 
  $ helm repo add kongz https://charts.kong-z.com
 
  $ helm install -f values.yaml graylog kongz/graylog -n logging
 
-# STEP 3:
+# STEP 4:
 
  $ cd fluent-bit
 
@@ -53,7 +58,7 @@ references: https://docs.graylog.org/v1/docs/notifications
 
  $ helm install -f values.yaml fluent-bit fluent/fluent-bit -n logging
 
-# STEP 4:
+# STEP 5:
 
  $ cd metricbeat
 
@@ -61,7 +66,7 @@ references: https://docs.graylog.org/v1/docs/notifications
 
  $ kubectl apply -f metricbeat-kubernetes.yaml
 
-# STEP 5:
+# STEP 6:
 
 login to graylog
 
